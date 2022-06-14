@@ -1,11 +1,7 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from "../constants/actionTypes";
+import {combineReducers} from "redux";
 
-export default (tablas = [], action) => {
-    switch (action.type) {
-        case FETCH_ALL:
-            return action.payload;
-            break;
-        default:
-            return tablas;
-    }
-};
+import tabla from "./tabla"
+
+export default combineReducers({
+    tabla
+});

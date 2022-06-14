@@ -3,18 +3,18 @@ import { Client } from "@notionhq/client";
 dotenv.config()
 const notion = new Client({auth: process.env.NOTION_API_KEY});
 
-export async function getDatabase(){
+export const getDatabase = async(req, res)=>{
     try {
         const response = await notion.databases.retrieve({
             database_id: process.env.NOTION_DATABASE
         })
-        console.log(response);
+        res.send(response)
     } catch (error) {
         console.log(error);
     }
 }
-getDatabase()
-export function createData({nombre, estado, encargado, cliente}) {
+
+export function createData({nombre, encargado, cliente}) {
     notion.pages.create({
         parent:{
             database_id: process.env.NOTION_DATABASE
@@ -56,3 +56,4 @@ export function createData({nombre, estado, encargado, cliente}) {
 }
 
 createData({nombre: "P-100", encargado:"Alfonso Santillan", cliente: "Sergio Espejel"})
+createData({nombre: "P-200", encargado:"Alfonso Santillan", cliente: "Wilfredo Tablero"})
