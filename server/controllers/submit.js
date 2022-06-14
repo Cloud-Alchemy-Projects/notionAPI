@@ -30,8 +30,8 @@ export function createData({nombre, apellidos, correo}) {
                     }
                 ]
             },
-            [process.env.ID_APELLIDOS]:{
-                rich_text:[
+            [process.env.ID_TIPO]:{
+                select:[
                     {
                         type: 'text',
                         text:{
@@ -40,16 +40,16 @@ export function createData({nombre, apellidos, correo}) {
                     }
                 ]
             },
-            [process.env.ID_CORREO]:{
-                rich_text:[
-                    {
-                        type: 'text',
-                        text:{
-                            content: correo
-                        }
-                    }
-                ]
-            },
+            // [process.env.ID_CORREO]:{
+            //     rich_text:[
+            //         {
+            //             type: 'text',
+            //             text:{
+            //                 content: correo
+            //             }
+            //         }
+            //     ]
+            // },
 
         }
     })
