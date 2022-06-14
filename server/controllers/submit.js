@@ -14,7 +14,7 @@ export async function getDatabase(){
     }
 }
 getDatabase()
-export function createData({nombre, apellidos, correo}) {
+export function createData({nombre, estado, encargado, cliente}) {
     notion.pages.create({
         parent:{
             database_id: process.env.NOTION_DATABASE
@@ -30,29 +30,29 @@ export function createData({nombre, apellidos, correo}) {
                     }
                 ]
             },
-            [process.env.ID_TIPO]:{
-                select:[
+            [process.env.ID_ENCARGADO]:{
+                rich_text:[
                     {
                         type: 'text',
                         text:{
-                            content: apellidos
+                            content: encargado
                         }
                     }
                 ]
             },
-            // [process.env.ID_CORREO]:{
-            //     rich_text:[
-            //         {
-            //             type: 'text',
-            //             text:{
-            //                 content: correo
-            //             }
-            //         }
-            //     ]
-            // },
+            [process.env.ID_CLIENTE]:{
+                rich_text:[
+                    {
+                        type: 'text',
+                        text:{
+                            content: cliente
+                        }
+                    }
+                ]
+            },
 
         }
     })
 }
 
-// createData({nombre: "Wil", apellidos:"Ta", correo:"sdfsd"})
+createData({nombre: "P-100", encargado:"Alfonso Santillan", cliente: "Sergio Espejel"})
