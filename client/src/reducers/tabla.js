@@ -5,6 +5,9 @@ export default (tabla = [], action) => {
         case FETCH_ALL:
             return action.payload;
             break;
+        case CREATE:
+            return [...tabla, action.payload];
+            break;
         default:
             return tabla;
     }

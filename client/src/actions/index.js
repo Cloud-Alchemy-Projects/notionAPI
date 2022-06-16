@@ -12,3 +12,12 @@ export const getTabla = () => async (dispatch) =>{
     }
 }
 
+export const sendData = (proyectInfo) => async (dispatch) =>{
+    try {
+        const { data } = await api.sendData(proyectInfo);
+        dispatch({ type: CREATE, payload: data});
+    } catch (error) {
+        console.log(error);
+    }
+}
+

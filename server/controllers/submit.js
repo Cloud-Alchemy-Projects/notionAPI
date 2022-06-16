@@ -14,46 +14,53 @@ export const getDatabase = async(req, res)=>{
     }
 }
 
-export function createData({nombre, encargado, cliente}) {
-    notion.pages.create({
-        parent:{
-            database_id: process.env.NOTION_DATABASE
-        },
-        properties:{
-            [process.env.ID_NOMBRES]:{
-                title:[
-                    {
-                        type: 'text',
-                        text:{
-                            content: nombre
-                        }
-                    }
-                ]
+export const createData = async (req, res) => {
+    const {nombre, encargado, cliente} = req.body
+    try {
+        notion.pages.create({
+            parent:{
+                database_id: process.env.NOTION_DATABASE
             },
-            [process.env.ID_ENCARGADO]:{
-                rich_text:[
-                    {
-                        type: 'text',
-                        text:{
-                            content: encargado
+            properties:{
+                [process.env.ID_NOMBRES]:{
+                    title:[
+                        {
+                            type: 'text',
+                            text:{
+                                content: nombre
+                            }
                         }
-                    }
-                ]
-            },
-            [process.env.ID_CLIENTE]:{
-                rich_text:[
-                    {
-                        type: 'text',
-                        text:{
-                            content: cliente
+                    ]
+                },
+                [process.env.ID_ENCARGADO]:{
+                    rich_text:[
+                        {
+                            type: 'text',
+                            text:{
+                                content: encargado
+                            }
                         }
-                    }
-                ]
-            },
-
-        }
-    })
+                    ]
+                },
+                [process.env.ID_CLIENTE]:{
+                    rich_text:[
+                        {
+                            type: 'text',
+                            text:{
+                                content: cliente
+                            }
+                        }
+                    ]
+                },
+    
+            }
+        })
+        res.status(201).json({message: "Data send"})
+        // console.log("Insercion");
+    } catch (error) {
+        res.status(400).json({message: error.message})
+    }
 }
 
-createData({nombre: "P-100", encargado:"Alfonso Santillan", cliente: "Sergio Espejel"})
-createData({nombre: "P-200", encargado:"Alfonso Santillan", cliente: "Wilfredo Tablero"})
+// createData({nombre: "P-100", encargado:"Alfonso Santillan", cliente: "Sergio Espejel"})
+// createData({nombre: "P-200", encargado:"Alfonso Santillan", cliente: "Wilfredo Tablero"})

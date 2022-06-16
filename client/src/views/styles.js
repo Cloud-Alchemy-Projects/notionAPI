@@ -7,8 +7,10 @@ export default makeStyles(()=>({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: 'column',
     },
     wrapper: {
+        marginTop: '20px',
         width: '60%',
         height: '80%',
         display: 'flex',
@@ -16,4 +18,9 @@ export default makeStyles(()=>({
         alignItems: 'center',
         flexDirection: 'column'
     },
+    buttonWrapper:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems:'center',
+    }
 }));
