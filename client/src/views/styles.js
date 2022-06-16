@@ -16,7 +16,7 @@ export default makeStyles(()=>({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     buttonWrapper:{
         display: 'flex',
