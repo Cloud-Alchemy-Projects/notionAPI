@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:1010/",
+  "proxy": "http://localhost:1010/",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "emoji-picker-react": "^3.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^8.0.2",

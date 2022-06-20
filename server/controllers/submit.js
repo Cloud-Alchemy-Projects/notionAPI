@@ -14,12 +14,107 @@ export const getDatabase = async(req, res)=>{
     }
 }
 
+const roles = [
+    {id: 1 , title:"Hola"},
+    {id: 2, title:"Hola"},
+    {id: 3 , title:"Hola"},
+    {id: 4 , title:"Hola"},
+    {id: 5 , title:"Hola"},
+];
+
+const rolesRow = roles.map((rol) => 
+    (
+        {             
+            "type": "table_row",
+            "table_row": {
+                "cells": [
+                    [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": rol.title
+                            },
+                        }
+                    ],
+                ]
+            }
+        }
+    )
+)
+
+rolesRow.unshift(
+    {            
+        "type": "table_row",
+        "table_row": {
+            "cells": [
+                [
+                    {
+                        "type": "text",
+                        "text": {
+                            "content": "Roles"
+                        },
+                        "annotations": {
+                            "bold": true,
+                            "color": "red_background"
+                        },
+                    }
+                ],
+            ]
+        }
+    },
+)
+const otherRow = roles.map((rol) => 
+    (
+        {
+            "type": "table_row",
+            "table_row": {
+                "cells": [
+                    [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": rol.title
+                            },
+                        }
+                    ],
+                ]
+            }
+        }
+    )
+)
+
+otherRow.unshift(
+    {                  
+        "type": "table_row",
+        "table_row": {
+            "cells": [
+                [
+                    {
+                        "type": "text",
+                        "text": {
+                            "content": "Other Row"
+                        },
+                        "annotations": {
+                            "bold": true,
+                            "color": "red_background"
+                        },
+                    }
+                ],
+            ]
+        }
+    },
+)
+
 export const createData = async (req, res) => {
-    const {nombre, encargado, cliente} = req.body
+    const {nombre, encargado, cliente,emoji} = req.body
     try {
         notion.pages.create({
             parent:{
                 database_id: process.env.NOTION_DATABASE
+            },
+            icon: {
+                type: "emoji",
+                    emoji: emoji
             },
             properties:{
                 [process.env.ID_NOMBRES]:{
@@ -52,15 +147,36 @@ export const createData = async (req, res) => {
                         }
                     ]
                 },
-    
-            }
+                [process.env.ID_ESTATUS]:{
+                    select: {
+                        id: process.env.ID_OPTION_NOTSTARTED,
+                        name: "Not started"
+                    }
+                },
+            },
+            children: [
+                {
+                    "type": "table",
+                    "table": {
+                        "table_width": 1,
+                        "has_column_header": false,
+                        "has_row_header": false,
+                        "children": rolesRow
+                    }
+                },
+                {
+                    "type": "table",
+                    "table": {
+                        "table_width": 1,
+                        "has_column_header": false,
+                        "has_row_header": false,
+                        "children": otherRow
+                    }
+                }
+            ]
         })
         res.status(201).json({message: "Data send"})
-        // console.log("Insercion");
     } catch (error) {
         res.status(400).json({message: error.message})
     }
 }
-
-// createData({nombre: "P-100", encargado:"Alfonso Santillan", cliente: "Sergio Espejel"})
-// createData({nombre: "P-200", encargado:"Alfonso Santillan", cliente: "Wilfredo Tablero"})
