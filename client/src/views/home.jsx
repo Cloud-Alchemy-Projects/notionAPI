@@ -72,7 +72,7 @@ const Home = () => {
                     <div>
                         <TextField
                             id="1"
-                            label="Nombre"
+                            label="Nombre de proyecto"
                             variant="standard"
                             value={postInfo.nombre}
                             onChange={
@@ -81,7 +81,7 @@ const Home = () => {
                         />
                         <TextField
                             id="2"
-                            label="Encargado"
+                            label="Encargado de Proyecto"
                             variant="standard"
                             sx={{margin: '0 10px'}}
                             value={postInfo.encargado}
@@ -91,7 +91,7 @@ const Home = () => {
                         />
                         <TextField
                             id="3"
-                            label="Cliente"
+                            label="Nombre del Cliente"
                             variant="standard"
                             value={postInfo.cliente}
                             onChange={

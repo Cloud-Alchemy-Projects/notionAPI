@@ -1,0 +1,21 @@
+
+version: '3.8'
+
+services:
+  client:
+    image: react-app
+    stdin_open: true
+    ports: 
+      - "3000:3000"
+    networks:
+      - notionapi
+    command: npm start
+  server:
+    image: api-server
+    ports:
+      - "1010:1010"
+    networks:
+      - notionapi
+networks:
+  notionapi:
+    driver: bridge
