@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import useStyles from './styles'
 import Picker from 'emoji-picker-react';
 import {Paper, Button, TextField, Alert, Snackbar} from '@mui/material'
-import {useDispatch, useSelector} from 'react-redux'
-import {getTabla} from "../actions/index"
+import {useDispatch} from 'react-redux'
+// import {getTabla} from "../actions/index"
 import {sendData} from "../actions/index"
 
 
@@ -44,7 +44,7 @@ const Home = () => {
     
     const clicked = () => {
         setcounter(counter+1)
-        if (counter%2==0) {
+        if (counter%2===0) {
             setclick(true)
         } else {
             setclick(false)
@@ -99,7 +99,7 @@ const Home = () => {
                             }
                         />
                         <div className={classes.emojiContainer}>
-                            <Button variant='text' onClick={clicked}>{postInfo.emoji==''?"Emoji":postInfo.emoji}</Button>
+                            <Button variant='text' onClick={clicked}>{postInfo.emoji===''?"Emoji":postInfo.emoji}</Button>
                             {
                                 click===true?
                                     <Picker onEmojiClick={onEmojiClick} />
