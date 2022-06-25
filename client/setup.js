@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-if (process.env.NODE_ENV === 'development') {
+// if (process.env.NODE_ENV === 'development') {
   const webPackConfigFile = path.resolve('./node_modules/react-scripts/config/webpack.config.js');
   let webPackConfigFileText = fs.readFileSync(webPackConfigFile, 'utf8');
 
@@ -16,4 +16,4 @@ if (process.env.NODE_ENV === 'development') {
       throw new Error(`Failed to inject watchOptions`);
     }
   }
-}
+// }
